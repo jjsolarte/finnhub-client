@@ -47,8 +47,10 @@ class _TraderPageState extends State<TraderPage> {
                           gridData: FlGridData(show: true),
                           lineBarsData: [
                             LineChartBarData(
-                              spots: stockValueList.asMap().entries.map((entry) {
-                                return FlSpot(entry.key.toDouble(), entry.value);
+                              spots:
+                                  stockValueList.asMap().entries.map((entry) {
+                                return FlSpot(
+                                    entry.key.toDouble(), entry.value);
                               }).toList(),
                               isCurved: true,
                               colors: [Colors.blue],
@@ -61,8 +63,15 @@ class _TraderPageState extends State<TraderPage> {
                     const SizedBox(height: 24),
                     const Text(
                       'BTCUSDT vs Time(s)',
-                      style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                      style:
+                          TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                     ),
+                    const SizedBox(height: 24),
+                    ElevatedButton(
+                        onPressed: () => context
+                            .read<TraderBloc>()
+                            .add(TradeCloseChannelEvent()),
+                        child: const Text('Stop Subscription'))
                   ],
                 );
               }
